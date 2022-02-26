@@ -58,5 +58,46 @@ test('input value changes correctly', () => {
 })
 
 
+test('add button adds 1 to counter value correctly', () => {
+    const { getByTestId } = render(<Counter/>)
+    const addBtn = getByTestId('addBtn')
+    const counterElement = getByTestId('counter')
+
+    fireEvent.click(addBtn);
+
+    expect(counterElement.textContent).toBe('1')
+})
+
+test('subtract button subtracts 1 from counter value correctly', () => {
+    const { getByTestId } = render(<Counter/>)
+    const subBtn = getByTestId('subBtn')
+    const counterElement = getByTestId('counter')
+
+    fireEvent.click(subBtn);
+
+    expect(counterElement.textContent).toBe('-1')
+})
 
 
+test('adding and subtracting multiple times renders the correct counter value', () => {
+    const { getByTestId } = render(<Counter/>)
+    const subBtn = getByTestId('subBtn')
+    const addBtn = getByTestId('addBtn')
+    const counterElement = getByTestId('counter')
+    const inputElement = getByTestId('input-value')
+
+    fireEvent.change(inputElement, {
+        target: {
+            value: "5"
+        }
+    })
+
+    expect(inputElement.value).toBe("5")
+
+
+    for (let i = 0; i <= 5 < i++) {
+        fireEvent.click(addBtn);
+    }
+
+
+})
