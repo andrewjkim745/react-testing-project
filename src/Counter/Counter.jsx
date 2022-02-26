@@ -8,7 +8,7 @@ export default function Counter() {
     return (
         <div>
             <h1 data-testid='heading-1'>Test Counter</h1>
-            <h1 data-testid='counter'>{counter}</h1>
+            <h1  style={{ color: counter >=100 ? 'green' : 'black'}}data-testid='counter'>{counter}</h1>
             <div style={{ display: 'flex', width: '100%', justifyContent: 'center'}}>
                 <button onClick={(e) => {setCounter(counter-inputValue)}} data-testid='subBtn'>-</button>
                 <input 

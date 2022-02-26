@@ -1,6 +1,6 @@
 import React from 'react'
 import Counter from '../Counter'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, getByText, render, screen } from '@testing-library/react'
 import "@testing-library/jest-dom/extend-expect"
 
 
@@ -103,4 +103,46 @@ test('adding and subtracting multiple times renders the correct counter value', 
     expect(counterElement.textContent).toBe("25")
 
 
+})
+
+
+
+test('counter renders with correct className and changes green when hit 100', () => {
+    const { getByTestId } = render(<Counter/>)
+    const counterElement = getByTestId('counter')
+    const inputElement = getByTestId('input-value')
+    const addBtn = getByTestId('addBtn')
+    const subBtn = getByTestId('subBtn')
+
+    expect(counterElement.className).toBe('');
+
+
+    fireEvent.change(inputElement, {
+        target: {
+            value: "10"
+        }
+    })
+    expect(counterElement.className).toBe('');
+
+    for (let i = 0 ; i < 10; i++) {
+        fireEvent.click(addBtn)
+    }
+
+    expect(counterElement).toHaveStyle(`color: green`)
+    console.log('value of counterElement', counterElement.textContent)
+    
+    fireEvent.click(subBtn)
+    fireEvent.click(subBtn)
+
+    expect(counterElement).toHaveStyle(`color: black`)
+
+    
+})
+
+
+test('counter className changes on button click', () => {
+    const { getByTestId } = render(<Counter/>)
+    const counterElement = getByTestId('counter')
+
+    expect(counterElement.className).toBe('');
 })
