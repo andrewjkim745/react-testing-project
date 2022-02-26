@@ -95,9 +95,12 @@ test('adding and subtracting multiple times renders the correct counter value', 
     expect(inputElement.value).toBe("5")
 
 
-    for (let i = 0; i <= 5 < i++) {
-        fireEvent.click(addBtn);
+    for (let i = 0 ; i <= 5; i++) {
+        fireEvent.click(addBtn)
     }
+    fireEvent.click(subBtn)
+
+    expect(counterElement.textContent).toBe("25")
 
 
 })
